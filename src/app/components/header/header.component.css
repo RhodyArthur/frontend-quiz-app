@@ -1,0 +1,86 @@
+.header {
+    max-height: 72px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 24px;
+}
+
+.header__category-container {
+    width: 46%;
+    height: 56%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.header__category-title p {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.header__category-image {
+    width: 40px;
+    height: 40px;
+    background-color: var(--light-grey);
+    border-radius: 8px;
+}
+
+.header__settings-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 8px;
+}
+
+.toggle-container {
+    position: relative;
+    display: inline-block;
+    width: 32px; 
+    height: 20px; 
+}
+
+/* Hide the default checkbox */
+.toggle-input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Style the toggle slider */
+.toggle-label {
+    position: absolute;
+    cursor: pointer;
+    background-color: var(--purple);
+    border-radius: 8px;
+    width: 32px; 
+    height: 16px; 
+    transition: background-color 0.3s;
+}
+
+/* Create the toggle circle */
+.toggle-label::before {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background-color: white;
+    width: 12px; 
+    height: 12px; 
+    top: 2px; 
+    left: 2px;
+    transition: transform 0.3s;
+}
+
+/* Change background color and circle position when checked */
+.toggle-input:checked + .toggle-label {
+    background-color: #4CAF50; /* Green color */
+}
+
+.toggle-input:checked + .toggle-label::before {
+    transform: translateX(16px); /* Moves knob to the right end */
+}
+
+.hidden {
+    opacity: 0;
+}

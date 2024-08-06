@@ -1,4 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+*, ::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 :root {
     --dark-navy: #313E51;
     --navy: #3B4D66;
@@ -14,9 +20,16 @@
 
 /* light mode */
 .light-mode {
-    --main-bg: var(var(--light-grey));
-    --error: #EE5454;
-    --green: #26D782;
-    --light-bluish: #ABC1E1;
-    --purple: #A729F5;
+    --main-bg: var(--light-grey);
+    --text-color: var(--dark-navy);
+}
+
+.dark-mode {
+    --main-bg: var(--dark-navy);
+    --text-color: var(--pure-white);
+}
+
+body {
+    background-color: var(--main-bg);
+    color: var(--text-color);
 }
