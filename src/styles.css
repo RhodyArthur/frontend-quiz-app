@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --dark-navy: #313E51;
+    --navy: #3B4D66;
+    --purple: #A729F5;
+    --light-bluish: #ABC1E1;
+    --pure-white: #ffffff;
+    --dark-gray: #626C7F;
+    --error: #EE5454;
+    --green: #26D782;
+    --light-grey: #F4F6FA;
+
+}
+
+/* light mode */
+.light-mode {
+    --main-bg: var(var(--light-grey));
+    --error: #EE5454;
+    --green: #26D782;
+    --light-bluish: #ABC1E1;
+    --purple: #A729F5;
+}
