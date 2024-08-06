@@ -1,0 +1,43 @@
+.main-container {
+    /* height: 100%; */
+    padding: 2em 1.5em 0;
+}
+
+.main__welcome-text h1 {
+    font-size: 2.5rem;
+    font-weight: 200;
+}
+
+.main__welcome-text span {
+    font-weight: 600;
+}
+
+.main__sub-text {
+    font-size: 0.875rem;
+    margin-top: 0.625em;
+    margin-bottom: 2.5em;
+    font-style: italic;
+    color: var(--light-bluish);
+}
+
+.main__category-container {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.main__category {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.75em;
+}
+
+.main__category svg {
+    background-color: var(--light-grey);
+    border-radius: 8px;
+}
+
+.main__category p {
+    font-size: 1.125rem;
+}
