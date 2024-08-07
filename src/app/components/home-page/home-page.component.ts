@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-home-page',
@@ -8,5 +9,10 @@ import { Component } from '@angular/core';
   styleUrl: './home-page.component.css'
 })
 export class HomePageComponent {
+  quizData!: DataService;
 
+  constructor(private dataService: DataService) {}
+
+  ngOnit() {
+  }
 }
