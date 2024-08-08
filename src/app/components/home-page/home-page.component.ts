@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DataService } from '../../services/data.service';
+import { Resp } from '../../interfaces/response';
 
 @Component({
   selector: 'app-home-page',
@@ -9,10 +10,19 @@ import { DataService } from '../../services/data.service';
   styleUrl: './home-page.component.css'
 })
 export class HomePageComponent {
-  quizData!: DataService;
+  quizzes: Resp={quizzes:[]};
 
   constructor(private dataService: DataService) {}
 
-  ngOnit() {
+  ngOnInit() {
+    this.fetchData();
+  }
+
+  fetchData() {
+    this.dataService.fetchQuizData()
+    .subscribe(data => {
+      this.quizzes = data; 
+      console.log(data); 
+    });
   }
 }
