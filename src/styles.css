@@ -28,11 +28,14 @@
 .light-mode {
     --main-bg: var(--light-grey);
     --text-color: var(--dark-navy);
+    --border-bg: var(--pure-white);
 }
 
 .dark-mode {
     --main-bg: var(--dark-navy);
     --text-color: var(--pure-white);
+    --border-bg: var(--navy);
+
 }
 
 body {
