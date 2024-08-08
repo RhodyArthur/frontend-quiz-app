@@ -13,7 +13,7 @@ export interface Question {
   }
   
   // Define an interface for the entire data structure
-  export interface Resp {
+  export interface response {
     quizzes: Quiz[];
   }
   

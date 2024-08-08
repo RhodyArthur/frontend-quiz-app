@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DataService } from '../../services/data.service';
-import { Resp } from '../../interfaces/response';
+import { response } from '../../interfaces/response';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -10,9 +11,11 @@ import { Resp } from '../../interfaces/response';
   styleUrl: './home-page.component.css'
 })
 export class HomePageComponent {
-  quizzes: Resp={quizzes:[]};
+  quizData: response={quizzes:[]};
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService,
+              private router: Router
+  ) {}
 
   ngOnInit() {
     this.fetchData();
@@ -21,8 +24,13 @@ export class HomePageComponent {
   fetchData() {
     this.dataService.fetchQuizData()
     .subscribe(data => {
-      this.quizzes = data; 
+      this.quizData = data; 
       console.log(data); 
     });
+  }
+
+  navigateToQuiz() {
+    this.router.navigate(['/quiz'])
+    console.log('clicked')
   }
 }
