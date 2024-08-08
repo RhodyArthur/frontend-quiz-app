@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { DataService } from '../../services/data.service';
 import { response } from '../../interfaces/response';
 import { Router } from '@angular/router';
+import { QuizService } from '../../services/quiz.service';
+import { CategoryService } from '../../services/category.service';
 
 @Component({
   selector: 'app-home-page',
@@ -13,24 +14,21 @@ import { Router } from '@angular/router';
 export class HomePageComponent {
   quizData: response={quizzes:[]};
 
-  constructor(private dataService: DataService,
-              private router: Router
-  ) {}
+  constructor(private quizService: QuizService,
+              private categoryService: CategoryService,
+              private router: Router) {}
 
   ngOnInit() {
-    this.fetchData();
-  }
-
-  fetchData() {
-    this.dataService.fetchQuizData()
+    this.quizService.fetchedData()
     .subscribe(data => {
-      this.quizData = data; 
-      console.log(data); 
-    });
+      this.quizData = data;
+    })
   }
 
-  navigateToQuiz() {
+
+  onCategoryClicked(category:string) {
+    this.categoryService.setSelectedCategory(category)
     this.router.navigate(['/quiz'])
-    console.log('clicked')
+    console.log(`${category} clicked`)
   }
 }

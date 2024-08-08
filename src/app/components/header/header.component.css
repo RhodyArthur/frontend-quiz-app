@@ -12,6 +12,13 @@
     display: flex;
     align-items: center;
     gap: 16px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+
+.header__category-container.show-header {
+    opacity: 1;
 }
 
 .header__category-title p {
@@ -81,6 +88,3 @@
     transform: translateX(16px); /* Moves knob to the right end */
 }
 
-.hidden {
-    opacity: 0;
-}

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ThemeService } from '../../services/theme.service';
+import { CategoryService } from '../../services/category.service';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,18 @@ import { ThemeService } from '../../services/theme.service';
 })
 export class HeaderComponent {
 
-  constructor(public themeService: ThemeService) {}
+  selectedCategory: string | null = null;
+
+  constructor(public themeService: ThemeService,
+              private categoryService: CategoryService
+  ) {}
+
+  ngOnInit() {
+    this.categoryService.selectedCategory$
+    .subscribe(category => {
+      this.selectedCategory = category;
+    })
+  }
 
   toggleTheme(){
     this.themeService.toggleLightMode()
