@@ -1,0 +1,16 @@
+.quiz-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em 1.5em 0;
+}
+
+/* .questions-progress-container {
+
+} */
+
+.question-title {
+    font-size: 14px;
+    font-style: italic;
+    color: var(--light-bluish);
+}
