@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1em 24px;
+    padding: 1em 1.5em;
 }
 
 .header__category-container {
@@ -12,6 +12,13 @@
     display: flex;
     align-items: center;
     gap: 16px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+
+.header__category-container.show-header {
+    opacity: 1;
 }
 
 .header__category-title p {
@@ -21,8 +28,6 @@
 }
 
 .header__category-image {
-    width: 40px;
-    height: 40px;
     background-color: var(--light-grey);
     border-radius: 8px;
 }
@@ -32,6 +37,7 @@
     justify-content: space-evenly;
     align-items: center;
     gap: 8px;
+    margin-left: auto;
 }
 
 .toggle-container {
@@ -81,6 +87,3 @@
     transform: translateX(16px); /* Moves knob to the right end */
 }
 
-.hidden {
-    opacity: 0;
-}
