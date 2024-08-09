@@ -12,8 +12,6 @@ export class QuizService {
 
   constructor(private dataService: DataService) { }
 
-  ngOnInit(){}
-
   fetchedData(): Observable<response> {
     return this.dataService.fetchQuizData() 
       .pipe(tap(data => {
@@ -21,7 +19,7 @@ export class QuizService {
       }));
   }
 
-  getQuizData(): Observable<response> {
-    return this.fetchedData();
-  }
+  // getQuizData(): Observable<response> {
+  //   return this.fetchedData();
+  // }
 }

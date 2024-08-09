@@ -1,1 +1,37 @@
-<p>quiz-page works!</p>
+<div class="quiz-container">
+    <div class="questions-progress-container">
+        <div class="questions-container">
+            @for (quiz of filteredQuestions; track $index) {
+                @if ($index === currentQuestionIndex) {
+                    <p class="question-title">Question {{currentQuestionIndex + 1}} of {{quiz.questions.length}}</p>
+                    <p class="question">{{quiz.questions[$index].question}}</p>
+            }
+        }
+    </div>
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress">
+                    <div class="progress-bar-fill">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="options-container">
+        @if(filteredQuestions[currentQuestionIndex]){
+        @for (option of filteredQuestions[currentQuestionIndex].questions[currentQuestionIndex].options; track $index) {
+                <div class="option" (click)="getSelectedOption(option)">
+                    <div class="option-label">
+                        <p>{{getOptionLabel($index)}}</p>
+                    </div>
+                    <p class="option-text">{{option}}</p>
+                </div>
+    }     
+    }     
+        <div class="submit">
+            <button class="submit-btn" (click)="checkAnswer()">Submit Answer</button>
+        </div>
+    </div>
+</div>
