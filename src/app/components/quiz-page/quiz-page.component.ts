@@ -73,6 +73,7 @@ this.nextQuestion();
 nextQuestion(){
   if(this.currentQuestionIndex < this.filteredQuestions.length - 1){
     this.currentQuestionIndex++;
+    console.log(this.currentQuestionIndex, 'next')
     this.selectedOption = '';
   }
 }
