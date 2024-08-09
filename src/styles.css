@@ -29,13 +29,17 @@
     --main-bg: var(--light-grey);
     --text-color: var(--dark-navy);
     --border-bg: var(--pure-white);
+    --question-title-color: var(--dark-gray);
+    --option-text: var(var(var(--dark-navy)))
+
 }
 
 .dark-mode {
     --main-bg: var(--dark-navy);
     --text-color: var(--pure-white);
     --border-bg: var(--navy);
-
+    --question-title-color: var(--light-bluish);
+    --option-text: var(var(--pure-white))
 }
 
 body {
