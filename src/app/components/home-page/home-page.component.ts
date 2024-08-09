@@ -29,6 +29,5 @@ export class HomePageComponent {
   onCategoryClicked(category:string) {
     this.categoryService.setSelectedCategory(category)
     this.router.navigate(['/quiz'])
-    console.log(`${category} clicked`)
   }
 }

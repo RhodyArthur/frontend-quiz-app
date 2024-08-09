@@ -71,6 +71,7 @@
 .option-label {
     width: 2.5em;
     height: 2.5em;
+    border: transparent;
     border-radius: .5em;
     font-size: 18px;
     font-weight: 500;
@@ -112,7 +113,7 @@ HOVERING EFFECTS
 }
 
 .option:active {
-    border: 2px solid var(--purple);
+    border: 1px solid var(--purple);
 }
 
 .option-label:active {
