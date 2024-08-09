@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CategoryService } from '../../services/category.service';
 import { QuizService } from '../../services/quiz.service';
 import { Quiz, response } from '../../interfaces/response';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiz-page',
@@ -19,8 +20,14 @@ export class QuizPageComponent {
   selectedOption: string = ''
   score: number = 0
 
+  // track correct and incorrect answers
+  showError: boolean = false;
+  isCorrect: boolean = false;
+  isInCorrect: boolean = false;
+
  constructor(private categoryService: CategoryService,
-            private quizService: QuizService) {}
+            private quizService: QuizService,
+            private router: Router) {}
 
 
   ngOnInit() {
@@ -58,23 +65,59 @@ getOptionLabel(index: number): string {
 // get selected option
 getSelectedOption(option: string) {
   this.selectedOption = option;
+  this.showError = false
 }
 
 // check if answer is correct
 checkAnswer(){
-if(this.selectedOption === this.filteredQuestions[this.currentQuestionIndex].questions[this.currentQuestionIndex].answer){
+if(!this.selectedOption){
+  this.showError = true;
+  return;
+}
+if(this.selectedOption === this.filteredQuestions[0].questions[this.currentQuestionIndex].answer){
   this.score++;
+  this.isCorrect = true;
   console.log(this.score)
 }
-this.nextQuestion();
+else {
+  this.isInCorrect = true;
+}
+
+// delay next question for user to see immediate effect
+setTimeout(()=>{
+  this.nextQuestion()
+}, 1000)
+}
+
+isCorrectOption(option:string): boolean {
+  return this.isCorrect && option === this.filteredQuestions[0].questions[this.currentQuestionIndex].answer;
+}
+
+
+isInCorrectOption(option:string): boolean {
+  return this.isInCorrect && this.selectedOption === option;
+}
+
+isSelected(option: string): boolean {
+  return this.selectedOption === option;
 }
 
 // move to next question
 nextQuestion(){
-  if(this.currentQuestionIndex < this.filteredQuestions.length - 1){
+  if(this.currentQuestionIndex < this.filteredQuestions[0].questions.length - 1){
     this.currentQuestionIndex++;
-    console.log(this.currentQuestionIndex, 'next')
-    this.selectedOption = '';
+    this.resetForNextQuestion();
   }
+  else {
+    this.router.navigate(['/result'])
+    console.log('Quiz complted')
+  }
+}
+
+resetForNextQuestion() {
+  this.selectedOption = ''
+  this.isCorrect = false
+  this.isInCorrect = false
+  this.showError = false
 }
 }

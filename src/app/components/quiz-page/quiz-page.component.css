@@ -87,6 +87,11 @@
     font-weight: 500;
     color: var(--option-text);
 }
+
+.option .tick,
+.option .wrong {
+    margin-left: auto;
+}
 .submit {
     width: 100%;
 }
@@ -104,6 +109,42 @@
 }
 
 
+.error-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.125rem;
+}
+
+/* selected option */
+.selected-option {
+    border: 2px solid var(--purple);
+}
+.selected-option .option-label {
+    background-color: var(--purple);
+    color: var(--pure-white);
+}
+
+/* correct option */
+.correct-option {
+    border: 2px solid var(--green);
+}
+.correct-option .option-label {
+    background-color: var(--green);
+    color: var(--pure-white);
+}
+
+
+/* incorrect option */
+.incorrect-option {
+    border: 2px solid var(--error);
+}
+.incorrect-option .option-label {
+    background-color: var(--error);
+    color: var(--pure-white);
+}
+
+
 /* 
 ======================
 HOVERING EFFECTS
@@ -112,9 +153,6 @@ HOVERING EFFECTS
     border: 2px solid var(--purple);
 }
 
-.option:active {
-    border: 1px solid var(--purple);
-}
 
 .option-label:active {
     background-color: var(--purple);
