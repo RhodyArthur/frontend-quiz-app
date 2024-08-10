@@ -27,6 +27,9 @@
 /* light mode */
 .light-mode {
     --main-bg: var(--light-grey);
+    --main-bg-image-mobile: url("/assets/images/pattern-background-mobile-light.svg");
+    --main-bg-image-tablet: url("/assets/images/pattern-background-tablet-light.svg");
+    --main-bg-image-desktop: url("/assets/images/pattern-background-desktop-light.svg");
     --text-color: var(--dark-navy);
     --border-bg: var(--pure-white);
     --question-title-color: var(--dark-gray);
@@ -36,6 +39,9 @@
 
 .dark-mode {
     --main-bg: var(--dark-navy);
+    --main-bg-image-mobile: url("/assets/images/pattern-background-mobile-dark.svg");
+    --main-bg-image-tablet: url("/assets/images/pattern-background-tablet-dark.svg");
+    --main-bg-image-desktop: url("/assets/images/pattern-background-desktop-dark.svg");
     --text-color: var(--pure-white);
     --border-bg: var(--navy);
     --question-title-color: var(--light-bluish);
@@ -43,6 +49,32 @@
 }
 
 body {
+    background-image: var(--main-bg-image-mobile);
+    background-size: contain;
+    background-repeat: no-repeat;
     background-color: var(--main-bg);
     color: var(--text-color);
+}
+
+/* 
+================
+MEDIA QUERIES
+================ */
+
+@media screen and (min-width:768px) {
+    body {
+        background-image: var(--main-bg-image-tablet);
+        background-color: var(--main-bg);
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+}
+
+@media screen and (min-width:1024px) {
+    body {
+        background-image: var(--main-bg-image-desktop);
+        background-color: var(--main-bg);
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
 }
