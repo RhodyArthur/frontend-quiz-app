@@ -3,6 +3,7 @@ import { CategoryService } from '../../services/category.service';
 import { QuizService } from '../../services/quiz.service';
 import { Quiz, response } from '../../interfaces/response';
 import { Router } from '@angular/router';
+import { ScoreService } from '../../services/score.service';
 
 @Component({
   selector: 'app-quiz-page',
@@ -27,7 +28,8 @@ export class QuizPageComponent {
 
  constructor(private categoryService: CategoryService,
             private quizService: QuizService,
-            private router: Router) {}
+            private router: Router,
+            private scoreService: ScoreService) {}
 
 
   ngOnInit() {
@@ -35,6 +37,9 @@ export class QuizPageComponent {
 this.categoryService.selectedCategory$
 .subscribe(category => {
   this.selectedCategory = category;
+  if(this.selectedCategory){
+    this.scoreService.setScore(this.selectedCategory || '', 0)
+  }
   this.filterQuestionsByCategory();
 })
 
@@ -46,6 +51,7 @@ this.quizService.fetchedData().subscribe(data => {
 error => {
   console.error('Failed to fetch quiz data', error);
 });
+
 }
 
 // filter questions by category
@@ -53,8 +59,8 @@ filterQuestionsByCategory() {
   if(this.selectedCategory) {
     this.filteredQuestions = this.quizData.quizzes.filter(quiz => quiz.title === this.selectedCategory);
   }
-  console.log(this.filteredQuestions); 
   this.currentQuestionIndex = 0;
+  this.score = this.scoreService.getScore(this.selectedCategory || '');
 }
 
 // get option label
@@ -75,7 +81,9 @@ if(!this.selectedOption){
   return;
 }
 if(this.selectedOption === this.filteredQuestions[0].questions[this.currentQuestionIndex].answer){
-  this.score++;
+  // this.scoreService.incrementScore(this.selectedCategory || '');
+  this.score++
+  // this.scoreService.setScore(this.selectedCategory || '', this.score)
   this.isCorrect = true;
   console.log(this.score)
 }
@@ -109,8 +117,7 @@ nextQuestion(){
     this.resetForNextQuestion();
   }
   else {
-    this.router.navigate(['/result'])
-    console.log('Quiz complted')
+    this.completeQuiz();
   }
 }
 
@@ -120,4 +127,21 @@ resetForNextQuestion() {
   this.isInCorrect = false
   this.showError = false
 }
+
+// update progress bar
+updateProgress(): number{
+  if(this.filteredQuestions.length > 0) {
+    const totalQuestions = this.filteredQuestions[0].questions.length;
+    return ((this.currentQuestionIndex + 1) / totalQuestions) * 100
+  }
+  return 0;
+}
+
+// complete quiz
+completeQuiz() {
+  this.scoreService.setScore(this.selectedCategory || '', this.score);
+  this.router.navigate(['/result']);
+}
+
+
 }
