@@ -1,0 +1,20 @@
+<div class="main-container">
+    <div class="main__text-container">
+        <div class="main__welcome-text">
+            <h1>Welcome to the </h1>
+            <span>Frontend Quiz!</span>
+        </div>
+        <div class="main__sub-text">
+            <p>Pick a subject to get started.</p>
+        </div>
+    </div>
+
+    <div class="main__category-container">
+        @for (quiz of quizData.quizzes; track $index) {
+            <div class="main__category" (click)="onCategoryClicked(quiz.title)">
+                <img [src]="quiz.icon" [alt]="quiz.title" class="icon">
+                <p>{{quiz.title}}</p>
+            </div>
+        }
+       
+</div>
