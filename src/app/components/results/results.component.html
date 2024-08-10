@@ -23,17 +23,17 @@
             <button class="play-btn" (click)="playAgain()">Play Again</button>
             <button class="view-all-btn" (click)="viewAllScores()">View All Scores</button>
         </div>
-    </div>
-
-    <div class="all-scores-container">
-        <h3 class="all-scores-title">All Scores</h3>
-        <div class="scores-list">
-                @for (score of allScores | keyvalue; track $index) {
-                    <div class="scores-item">
-                        <span class="score-category">{{score.key}}</span>
-                        <span class="score-value">{{score.value}}</span>
-                    </div>
-                    }
+        <div class="all-scores-container">
+            <h3 class="all-scores-title">All Scores</h3>
+            <div class="scores-list">
+                    @for (score of allScores | keyvalue; track $index) {
+                        <div class="scores-item">
+                            <span class="score-category">{{score.key}}</span>
+                            <span class="score-value">{{score.value}}</span>
+                        </div>
+                        }
+            </div>
         </div>
     </div>
+
 </div>

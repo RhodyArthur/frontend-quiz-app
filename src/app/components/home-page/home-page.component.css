@@ -8,6 +8,7 @@
 }
 
 .main__welcome-text span {
+    font-size: 2.5rem;
     font-weight: 600;
 }
 
@@ -42,4 +43,45 @@
 
 .main__category p {
     font-size: 1.125rem;
+}
+
+
+/* 
+===============
+MEDIA QUERIES
+============== */
+
+@media screen and (min-width:1024px) {
+    .main-container {
+        /* max-width: 1190px; */
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .main__category-container,
+    .main__text-container {
+        width: 100%;
+    }
+    
+    .main__category-container {
+        gap: 24px;
+    }
+
+    .main__category {
+        gap: 2rem;
+        padding: 1.25rem;
+    }
+    .main__category p{
+        font-size: 1.75rem;
+    }
+    
+    .main__welcome-text h1,
+    .main__welcome-text span {
+        font-size: 4rem;
+    }
+
+    .main__sub-text {
+        margin-top: 3em;
+        font-size: 1.25rem;
+    }
 }
