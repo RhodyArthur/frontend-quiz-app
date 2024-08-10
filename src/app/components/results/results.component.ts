@@ -32,6 +32,12 @@ export class ResultsComponent {
       this.selectedCategory = category;
     })
 
+    
+    if(this.selectedCategory) {
+      this.score = this.scoreService.getScore(this.selectedCategory);
+      console.log(this.score)
+    }
+
     // get quiz data
 this.quizService.fetchedData().subscribe(data => {
   this.quizData = data;
@@ -39,11 +45,7 @@ this.quizService.fetchedData().subscribe(data => {
 error => {
   console.error('Failed to fetch quiz data', error);
 });
-
-if(this.selectedCategory) {
-  this.score = this.scoreService.getScore(this.selectedCategory);
 }
-  }
 
   playAgain() {
     this.router.navigate(['/'])
@@ -51,7 +53,6 @@ if(this.selectedCategory) {
 
   viewAllScores() {
     const allScores = this.scoreService.getAllScores()
-    console.log(allScores)
     this.allScores = allScores
   }
 

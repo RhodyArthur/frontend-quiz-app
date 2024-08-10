@@ -37,6 +37,9 @@ export class QuizPageComponent {
 this.categoryService.selectedCategory$
 .subscribe(category => {
   this.selectedCategory = category;
+  if(this.selectedCategory){
+    this.scoreService.setScore(this.selectedCategory || '', 0)
+  }
   this.filterQuestionsByCategory();
 })
 
@@ -48,6 +51,7 @@ this.quizService.fetchedData().subscribe(data => {
 error => {
   console.error('Failed to fetch quiz data', error);
 });
+
 }
 
 // filter questions by category
@@ -77,8 +81,9 @@ if(!this.selectedOption){
   return;
 }
 if(this.selectedOption === this.filteredQuestions[0].questions[this.currentQuestionIndex].answer){
-  this.score++;
-  this.scoreService.setScore(this.selectedCategory || '', this.score)
+  // this.scoreService.incrementScore(this.selectedCategory || '');
+  this.score++
+  // this.scoreService.setScore(this.selectedCategory || '', this.score)
   this.isCorrect = true;
   console.log(this.score)
 }
@@ -112,8 +117,7 @@ nextQuestion(){
     this.resetForNextQuestion();
   }
   else {
-    this.router.navigate(['/result'])
-    console.log('Quiz complted')
+    this.completeQuiz();
   }
 }
 
@@ -123,4 +127,21 @@ resetForNextQuestion() {
   this.isInCorrect = false
   this.showError = false
 }
+
+// update progress bar
+updateProgress(): number{
+  if(this.filteredQuestions.length > 0) {
+    const totalQuestions = this.filteredQuestions[0].questions.length;
+    return ((this.currentQuestionIndex + 1) / totalQuestions) * 100
+  }
+  return 0;
+}
+
+// complete quiz
+completeQuiz() {
+  this.scoreService.setScore(this.selectedCategory || '', this.score);
+  this.router.navigate(['/result']);
+}
+
+
 }

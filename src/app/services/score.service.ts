@@ -8,6 +8,7 @@ import { CategoryService } from './category.service';
 export class ScoreService {
   private storageKey = 'categoryScores'
 
+ 
   constructor() { }
 
 // get score for a specific category
@@ -33,4 +34,16 @@ getAllScores() : {[key: string]: number} {
 private saveScores(scores: {[key:string]: number}): void{
   localStorage.setItem(this.storageKey, JSON.stringify(scores))
 }
+
+ // Increment score for a particular category
+ incrementScore(category: string): void {
+  const scores = this.getAllScores();
+  if (scores[category] !== undefined) {
+    scores[category]++;
+  } else {
+    scores[category] = 1; 
+  }
+  this.saveScores(scores);
+}
+
 }
