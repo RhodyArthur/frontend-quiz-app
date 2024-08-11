@@ -1,4 +1,14 @@
 <div class="quiz-container">
+    @if(isLoading){
+        <!-- bouncing dots -->
+<div id="bouncing-dots" class="loading-indicator">
+    <div class="bouncing-dot"></div>
+    <div class="bouncing-dot"></div>
+    <div class="bouncing-dot"></div>
+</div>
+}
+
+    @if(!isLoading){
     <div class="questions-progress-container">
         <div class="questions-container">
                 @if (filteredQuestions[0].questions.length > 1) {
@@ -17,8 +27,8 @@
             </div>
         </div>
     </div>
-
-
+}
+@if(!isLoading){
     <div class="options-container">
         @if(filteredQuestions[0].questions.length > 0){
         @for (option of filteredQuestions[0].questions[currentQuestionIndex].options; track $index) {
@@ -60,4 +70,5 @@
             </div>
         }
     </div>
+}  
 </div>
