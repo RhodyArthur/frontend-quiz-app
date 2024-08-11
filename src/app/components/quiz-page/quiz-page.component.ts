@@ -25,6 +25,7 @@ export class QuizPageComponent {
   showError: boolean = false;
   isCorrect: boolean = false;
   isInCorrect: boolean = false;
+  isLoading: boolean = false;
 
  constructor(private categoryService: CategoryService,
             private quizService: QuizService,
@@ -81,9 +82,7 @@ if(!this.selectedOption){
   return;
 }
 if(this.selectedOption === this.filteredQuestions[0].questions[this.currentQuestionIndex].answer){
-  // this.scoreService.incrementScore(this.selectedCategory || '');
   this.score++
-  // this.scoreService.setScore(this.selectedCategory || '', this.score)
   this.isCorrect = true;
   console.log(this.score)
 }
@@ -91,9 +90,13 @@ else {
   this.isInCorrect = true;
 }
 
+// displaying loading feature
+this.isLoading = true;
+
 // delay next question for user to see immediate effect
 setTimeout(()=>{
-  this.nextQuestion()
+  this.nextQuestion();
+  this.isLoading = false;
 }, 1000)
 }
 
